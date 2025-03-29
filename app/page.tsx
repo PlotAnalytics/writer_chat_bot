@@ -73,7 +73,13 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true)
+    console.log('Home component mounted')
   }, [])
+
+  useEffect(() => {
+    console.log('isLoggedIn:', isLoggedIn)
+    console.log('userId:', userId)
+  }, [isLoggedIn, userId])
 
   const handleLogin = (userId: string) => {
     setUserId(userId)
@@ -83,6 +89,8 @@ export default function Home() {
   if (!mounted) {
     return null
   }
+
+  console.log('Rendering Home component')
 
   return (
     <ThemeProvider theme={theme}>
