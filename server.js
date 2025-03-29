@@ -6,6 +6,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('public')); // Serve static files from 'public' directory
 
 const pool = new Pool({
   user: 'postgres',
