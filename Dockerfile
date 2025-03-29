@@ -14,6 +14,9 @@ COPY . .
 # Build the frontend
 RUN npm run build
 
+# Copy the built frontend files to the public directory
+RUN cp -r .next/static/* public/
+
 # Expose the port the app runs on (8080 for Cloud Run)
 EXPOSE 8080
 
