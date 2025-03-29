@@ -4,7 +4,14 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/chat-app']
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'chat-app', '--image', 'gcr.io/$PROJECT_ID/chat-app', '--platform', 'managed', '--region', 'us-central1', '--allow-unauthenticated']
+    args: [
+      'run', 'deploy', 'chat-app',
+      '--image', 'gcr.io/$PROJECT_ID/chat-app',
+      '--platform', 'managed',
+      '--region', 'us-central1',
+      '--allow-unauthenticated',
+      '--set-env-vars', 'NEXT_PUBLIC_API_URL=https://chat-app-60442568184.us-central1.run.app'
+    ]
 
 images:
   - 'gcr.io/$PROJECT_ID/chat-app' 
