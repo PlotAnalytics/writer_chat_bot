@@ -1,23 +1,21 @@
 # Use the official Node.js image.
 FROM node:18
 
-# Create and change to the app directory.
+# Set the working directory for the backend
 WORKDIR /usr/src/app
 
-# Copy application dependency manifests to the container image.
+# Copy backend package files and install dependencies
 COPY package*.json ./
+RUN npm install
 
-# Install production dependencies.
-RUN npm install --only=production --legacy-peer-deps
-
-# Copy the rest of the application code.
+# Copy the rest of the backend files
 COPY . .
 
-# Install pm2 to manage processes
-RUN npm install -g pm2
+# Build the frontend
+RUN npm run build
 
-# Start both frontend and backend
-CMD ["pm2-runtime", "start", "ecosystem.config.js"]
+# Expose the port the app runs on (8080 for Cloud Run)
+EXPOSE 8080
 
-# Expose the port the app runs on
-EXPOSE 8080 
+# Run the backend server
+CMD ["node", "server.js"] 
