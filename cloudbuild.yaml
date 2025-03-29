@@ -9,8 +9,7 @@ steps:
       '--image', 'gcr.io/$PROJECT_ID/chat-app',
       '--platform', 'managed',
       '--region', 'us-central1',
-      '--allow-unauthenticated',
-      '--set-env-vars', 'NEXT_PUBLIC_API_URL=https://chat-app-60442568184.us-central1.run.app'
+      '--allow-unauthenticated'
     ]
 
 images:
