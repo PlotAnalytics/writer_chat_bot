@@ -17,7 +17,7 @@ COPY . .
 RUN npm install -g pm2
 
 # Start both frontend and backend
-CMD ["pm2-runtime", "start", "server.js", "--name", "backend", "--", "npm", "run", "start", "--name", "frontend"]
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]
 
 # Expose the port the app runs on
 EXPOSE 8080 
