@@ -110,7 +110,7 @@ export default function ChatInterface({ userId }: { userId: string }) {
 
     const connectWebSocket = () => {
       if (userId !== null) {
-        const socket = new WebSocket(`ws://34.170.31.117/api/idea-claude/?user_id=${userId}`);
+        const socket = new WebSocket(`wss://34.170.31.117/api/idea-claude/?user_id=${userId}`);
 
         socket.onopen = () => {
           console.log("Connected to WebSocket server");
@@ -219,7 +219,7 @@ export default function ChatInterface({ userId }: { userId: string }) {
                 if (ws) {
                   ws.close();
                 }
-                const socket = new WebSocket(`ws://34.170.31.117/api/idea-claude/?user_id=${userId}`);
+                const socket = new WebSocket(`wss://34.170.31.117/api/idea-claude/?user_id=${userId}`);
                 setWs(socket);
               }}
             >
