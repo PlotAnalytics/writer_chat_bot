@@ -1,24 +1,23 @@
-# Use the official Node.js image.
-FROM node:18
+# Use an official Node.js runtime as the base image
+FROM node:16
 
-# Set the working directory for the backend
-WORKDIR /usr/src/app
+# Set the working directory
+WORKDIR /app
 
-# Copy backend package files and install dependencies
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+# Copy package.json and lock files
+COPY package.json yarn.lock ./
 
-# Copy the rest of the backend files
+# Install dependencies
+RUN yarn install --legacy-peer-deps
+
+# Copy the rest of your app
 COPY . .
 
-# Build the frontend
-RUN npm run build
+# Build the Next.js app
+RUN yarn build
 
-# Copy the built frontend files to the public directory
-RUN cp -r .next/static/* public/
-
-# Expose the port the app runs on (8080 for Cloud Run)
+# Expose the port Cloud Run uses (typically 8080)
 EXPOSE 8080
 
-# Run the backend server
-CMD ["node", "server.js"] 
+# Start the Next.js app on the Cloud Run port
+CMD ["yarn", "start"]
